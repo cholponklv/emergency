@@ -50,6 +50,7 @@ THIRD_PARTY_APPS = [
     'drf_spectacular_sidecar',
     'corsheaders',
     'rest_framework.authtoken',
+    'phonenumber_field',
 ]
 
 LOCAL_APPS = [
