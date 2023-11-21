@@ -13,6 +13,6 @@ class News(models.Model):
 
 
 class Galery(models.Model):
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='photo')
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     

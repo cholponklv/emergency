@@ -6,7 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Team(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=155)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='team_photo')
     phone = PhoneNumberField(unique = True)
 
 
