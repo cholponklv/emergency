@@ -54,7 +54,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'admins',
+    'users',
     'feedback',
     'news',
     'project',
@@ -110,7 +110,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'admins.Admin'
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -147,7 +147,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',),
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
