@@ -30,6 +30,7 @@ class Project(models.Model):
 
     name = models.CharField(max_length=256)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
+    photo = models.ManyToManyField('Photo', blank=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     longitude = models.CharField(max_length=255)
     latitude = models.CharField(max_length=155)
@@ -39,3 +40,6 @@ class Project(models.Model):
     deadline = models.DateField()
     start_at = models.DateField(auto_now_add=True)
     color = models.CharField(max_length=100)
+
+class Photo(models.Model):
+    photo = models.ImageField(upload_to='photo')

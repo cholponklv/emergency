@@ -10,5 +10,5 @@ class NewsSerializer(serializers.ModelSerializer):
 class GalerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Galery
-        fields = ('id', 'photo', 'project')
+        fields = ('id', 'photo')
 
