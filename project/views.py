@@ -17,12 +17,9 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
     def create(self, request, project_id):
         try:
-            # Получаем проект по переданному идентификатору
             project = Project.objects.get(pk=project_id)
         except Project.DoesNotExist:
             return Response({"error": "Проект не найден"}, status=status.HTTP_404_NOT_FOUND)
-
-        # Добавляем идентификатор проекта в данные запроса
         request.data['project'] = project_id
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -31,7 +28,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, *args, **kwargs):
-        # Изменение метода update, чтобы учитывать идентификатор проекта в запросе
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
@@ -50,12 +46,10 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def create(self, request, project_id):
         try:
-            # Получаем проект по переданному идентификатору
             project = Project.objects.get(pk=project_id)
         except Project.DoesNotExist:
             return Response({"error": "Проект не найден"}, status=status.HTTP_404_NOT_FOUND)
 
-        # Добавляем идентификатор проекта в данные запроса
         request.data['project'] = project_id
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -64,7 +58,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, *args, **kwargs):
-        # Изменение метода update, чтобы учитывать идентификатор проекта в запросе
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)

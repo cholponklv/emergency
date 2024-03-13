@@ -5,7 +5,6 @@ from .views import ProjectViewSet, PhotoViewSet, DocumentViewSet,AllPhotosView, 
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet)
 
-# Добавляем URL-шаблоны для CRUD операций документов, учитывая идентификатор проекта
 urlpatterns = [
     path('projects/<int:project_id>/photos/', PhotoViewSet.as_view({'get': 'list', 'post': 'create'}), name='photo-list'),
     path('projects/<int:project_id>/photos/<int:pk>/', PhotoViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='photo-detail'),
