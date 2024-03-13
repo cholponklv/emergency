@@ -1,18 +1,8 @@
+# serializers.py
 from rest_framework import serializers
-from .models import Tender, TenderDocument
+from .models import Tender
 
-
-class TendersSerializer(serializers.ModelSerializer):
+class TenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tender
-        fields = ('id','name', 'project', 'description')
-
-
-
-
-
-class TenderDocumentsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TenderDocument
-        fields = ('id','name', 'file', 'tender', 'uploaded_at')
-
+        fields = ('id', 'name', 'created_at', 'deadline', 'description')

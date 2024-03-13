@@ -31,6 +31,7 @@ urlpatterns = [
     path('', include('news.urls')),
     path('', include('project.urls')),
     path('', include('tender.urls')),
-    path('', include('vacancy.urls')),
+    path('', include('landslide_points.urls')),
+    path('', include('users.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,14 +1,9 @@
+# serializers.py
 from rest_framework import serializers
-from .models import Galery, News
-
+from .models import News
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ('id','name', 'project', 'descrtiption', 'created_at')
-
-class GalerySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Galery
-        fields = ('id', 'photo')
+        fields = ('id', 'name', 'description', 'photo', 'created_at')
 

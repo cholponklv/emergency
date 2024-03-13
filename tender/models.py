@@ -6,12 +6,9 @@ from project.models import Project
 
 class Tender(models.Model):
     name = models.CharField(max_length=144)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
+    deadline = models.DateField()
     description = models.TextField()
+    
 
 
-class TenderDocument(models.Model):
-    name = models.CharField(max_length=134)
-    file = models.FileField()
-    tender = models.ForeignKey(Tender, on_delete=models.CASCADE)
-    uploaded_at = models.DateTimeField(auto_now_add=True)

@@ -1,45 +1,24 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
-
-# Create your models here.
-
-class Team(models.Model):
-    name = models.CharField(max_length=100)
-    country = models.CharField(max_length=155)
-    photo = models.ImageField(upload_to='team_photo')
-    phone = PhoneNumberField(unique = True)
-
-
-
-class MemberTeam(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150)
-
-
-
-
 
 class Project(models.Model):
-    STATUS_CHOICES = [
-        ('is_finished', 'is_finished'),
-        ('in_progress', 'in_progress'),
-        ('is_assigned', 'is_assigned'),
-    ]
-
-
-
-    name = models.CharField(max_length=256)
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES)
-    photo = models.ManyToManyField('Photo', blank=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    longitude = models.CharField(max_length=255)
-    latitude = models.CharField(max_length=155)
+    name = models.CharField(max_length=100)
     description = models.TextField()
-    owner = models.CharField(max_length=140)
-    budget = models.IntegerField()
-    deadline = models.DateField()
-    start_at = models.DateField(auto_now_add=True)
-    color = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Photo(models.Model):
-    photo = models.ImageField(upload_to='photo')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='photos',null=True,blank=True)
+    image = models.ImageField(upload_to='photos/',null=True,blank=True)
+    caption = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"Photo for {self.project.name}"
+
+class Document(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='documents')
+    file = models.FileField(upload_to='documents/',null=True,blank=True)
+    description = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Document for {self.project.name}"

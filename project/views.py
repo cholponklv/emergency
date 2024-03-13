@@ -1,32 +1,87 @@
-from django.shortcuts import render
-
-# Create your views here.
+# views.py
 from rest_framework import viewsets
-from .models import Project, MemberTeam, Team,Photo
-from .serializers import ProjectsSerializer, MemberTeamSerializer, TeamSerializer,PhotoSerializer
-# Create your views here.
-
+from .models import Project, Photo,Document
+from .serializers import ProjectSerializer, PhotoSerializer,DocumentSerializer
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework import generics
 
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
-    serializer_class = ProjectsSerializer
-    
+    serializer_class = ProjectSerializer
 
-
-
-class TeamViewSet(viewsets.ModelViewSet):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-    
 
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
 
+    def create(self, request, project_id):
+        try:
+            # Получаем проект по переданному идентификатору
+            project = Project.objects.get(pk=project_id)
+        except Project.DoesNotExist:
+            return Response({"error": "Проект не найден"}, status=status.HTTP_404_NOT_FOUND)
 
+        # Добавляем идентификатор проекта в данные запроса
+        request.data['project'] = project_id
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def update(self, request, *args, **kwargs):
+        # Изменение метода update, чтобы учитывать идентификатор проекта в запросе
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class MemberTeamViewSet(viewsets.ModelViewSet):
-    queryset = MemberTeam.objects.all()
-    serializer_class = MemberTeamSerializer
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+class DocumentViewSet(viewsets.ModelViewSet):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer
+
+    def create(self, request, project_id):
+        try:
+            # Получаем проект по переданному идентификатору
+            project = Project.objects.get(pk=project_id)
+        except Project.DoesNotExist:
+            return Response({"error": "Проект не найден"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Добавляем идентификатор проекта в данные запроса
+        request.data['project'] = project_id
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        # Изменение метода update, чтобы учитывать идентификатор проекта в запросе
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
+class AllPhotosView(generics.ListAPIView):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+
+class AllDocumentsView(generics.ListAPIView):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer

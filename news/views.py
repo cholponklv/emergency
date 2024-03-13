@@ -1,16 +1,8 @@
-from django.shortcuts import render
+# views.py
 from rest_framework import viewsets
-from .models import News, Galery
-from .serializers import NewsSerializer, GalerySerializer
-# Create your views here.
-
+from .models import News
+from .serializers import NewsSerializer
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-
-
-class GaleryViewSet(viewsets.ModelViewSet):
-    queryset = Galery.objects.all()
-    serializer_class = GalerySerializer
-

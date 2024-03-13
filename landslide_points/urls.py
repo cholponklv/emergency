@@ -1,9 +1,10 @@
+# urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import VacancyViewSet
+from .views import PointViewSet
 
 router = DefaultRouter()
-router.register(r'vacancy', VacancyViewSet)
+router.register(r'points', PointViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

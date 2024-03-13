@@ -1,21 +1,7 @@
-from django.shortcuts import render
-
-# Create your views here.
-# Create your views here.
 from rest_framework import viewsets
-from .models import Tender, TenderDocument
-from .serializers import TenderDocumentsSerializer, TendersSerializer
-# Create your views here.
+from .models import Tender
+from .serializers import TenderSerializer
 
-
-class TendersViewSet(viewsets.ModelViewSet):
+class TenderViewSet(viewsets.ModelViewSet):
     queryset = Tender.objects.all()
-    serializer_class = TendersSerializer
-
-
-
-
-class TenderDocumentsViewSet(viewsets.ModelViewSet):
-    queryset = TenderDocument.objects.all()
-    serializer_class = TenderDocumentsSerializer
-
+    serializer_class = TenderSerializer
