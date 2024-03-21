@@ -6,9 +6,22 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework import generics
 
+from.pagination import CustomPagination
+from .filters import ProjectFilter, DocumentFilter
+from rest_framework import filters
+from django_filters import rest_framework as dj_filters
+
+
+
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    pagination_class = CustomPagination
+    filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
+    filterset_class = ProjectFilter
+    search_fields = ['name', 'description']
+
+
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
@@ -40,9 +53,11 @@ class PhotoViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+
 
     def create(self, request, project_id):
         try:
@@ -78,3 +93,7 @@ class AllPhotosView(generics.ListAPIView):
 class AllDocumentsView(generics.ListAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+    pagination_class = CustomPagination
+    filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
+    filterset_class = DocumentFilter
+    search_fields = ['project', 'description']
