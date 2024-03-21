@@ -6,7 +6,7 @@ from project.models import Project
 class News(models.Model):
     name = models.CharField(max_length=160)
     description = models.TextField(null = True,blank = True)
-    photo = models.ImageField(upload_to='NewsPhoto')
+    photo = models.ImageField(upload_to='NewsPhoto',null = True,blank = True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
