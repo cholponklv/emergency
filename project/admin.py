@@ -12,12 +12,12 @@ class DocumentInline(admin.TabularInline):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     inlines = [PhotoInline, DocumentInline]
-    list_display = ('name', 'description')
+    list_display = ('name', 'description','created_at')
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('project', 'image', 'caption')
+    list_display = ('project', 'image', 'caption','created_at')
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('project', 'file', 'description')
+    list_display = ('project', 'file', 'description','created_at')
