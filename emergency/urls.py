@@ -33,5 +33,6 @@ urlpatterns = [
     path('', include('tender.urls')),
     path('', include('landslide_points.urls')),
     path('', include('users.urls')),
+    path('', include('graph.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

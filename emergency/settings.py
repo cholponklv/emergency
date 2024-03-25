@@ -59,7 +59,8 @@ LOCAL_APPS = [
     'news',
     'project',
     'tender',
-    'landslide_points'
+    'landslide_points',
+    'graph'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
