@@ -208,7 +208,6 @@ customColorPalette = [
             'label': 'Blue'
         },
     ]
-CKEDITOR_5_CUSTOM_CSS = '/home/cholponklv/Desktop/emergency/css/admin_dark_mode_fix.css'
 CKEDITOR_5_CONFIGS = {
     'default': {
         'skin': 'black',
