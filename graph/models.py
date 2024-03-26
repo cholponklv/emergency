@@ -24,9 +24,9 @@ class Graph1(models.Model):
         ('Actual', 'Факт'),
     ]
     
-    month = models.CharField(max_length=20, choices=MONTH_CHOICES)
+    month = models.CharField(max_length=120, choices=MONTH_CHOICES)
     value = models.IntegerField()
-    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    type = models.CharField(max_length=100, choices=TYPE_CHOICES)
 
 
 class Graph2(models.Model):
@@ -35,9 +35,22 @@ class Graph2(models.Model):
         ('Concerning', 'Тревожный'),
         ('Critical', 'Критический'),
     ]
-    
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    x = models.IntegerField()
+    MONTH_CHOICES = [
+        ('January', 'Январь'),
+        ('February', 'Февраль'),
+        ('March', 'Март'),
+        ('April', 'Апрель'),
+        ('May', 'Май'),
+        ('June', 'Июнь'),
+        ('July', 'Июль'),
+        ('August', 'Август'),
+        ('September', 'Сентябрь'),
+        ('October', 'Октябрь'),
+        ('November', 'Ноябрь'),
+        ('December', 'Декабрь'),
+    ]
+    type = models.CharField(max_length=200, choices=TYPE_CHOICES)
+    month = models.CharField(max_length=200, choices=MONTH_CHOICES)
     y = models.IntegerField()
 
 
@@ -57,7 +70,7 @@ class Graph3(models.Model):
         ('December', 'Декабрь'),
     ]
     
-    month = models.CharField(max_length=20, choices=MONTH_CHOICES)
+    month = models.CharField(max_length=200, choices=MONTH_CHOICES)
     value = models.IntegerField()
 
 class Graph4(models.Model):
