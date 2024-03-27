@@ -108,46 +108,20 @@ class AllDocumentsView(generics.ListAPIView):
 
 
 
-def search(query):
-    # Поиск по модели Point
-    points = Point.objects.filter(
-        Q(name__icontains=query)
-    )
-
-    # Поиск по модели News
-    news = News.objects.filter(
-        Q(title__icontains=query)
-    )
-
-    # Поиск по модели Tender
-    tenders = Tender.objects.filter(
-        Q(name__icontains=query)
-    )
-    projects = Project.objects.filter(
-        Q(name__icontains=query)
-    )
-
-    # Собираем результаты в один список и возвращаем
-    results = list(points) + list(news) + list(tenders)+list(projects)
-    return results
 
 class SearchAPIView(APIView):
     def get(self, request):
-        query = request.query_params.get('query', None)  # Получаем запрос пользователя из GET параметров
-
+        query = request.query_params.get('query', None)  
         if query:
-            # Выполняем поиск
             points = Point.objects.filter(name__icontains=query)
             news = News.objects.filter(title__icontains=query)
             tenders = Tender.objects.filter(name__icontains=query)
             project = Project.objects.filter(name__icontains=query)
-            # Сериализуем результаты
             point_serializer = PointSerializer(points, many=True)
             news_serializer = NewsSerializer(news, many=True)
             tender_serializer = TenderSerializer(tenders, many=True)
             project_serializer = ProjectSerializer(project,many=True)
 
-            # Возвращаем результаты поиска
             return Response({
                 'points': point_serializer.data,
                 'news': news_serializer.data,
@@ -155,5 +129,4 @@ class SearchAPIView(APIView):
                 'project':project_serializer.data
             }, status=status.HTTP_200_OK)
         else:
-            # Если запрос отсутствует, возвращаем ошибку
             return Response({'error': 'Пожалуйста, введите запрос для поиска.'}, status=status.HTTP_400_BAD_REQUEST)
