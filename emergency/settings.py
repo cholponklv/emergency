@@ -179,9 +179,9 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 customColorPalette = [
         {
             'color': 'hsl(4, 90%, 58%)',
@@ -208,6 +208,7 @@ customColorPalette = [
             'label': 'Blue'
         },
     ]
+CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor5/admin_dark_mode_fix.css'
 CKEDITOR_5_CONFIGS = {
     'default': {
         'skin': 'black',
