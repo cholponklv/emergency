@@ -4,6 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Graph1, Graph2, Graph3, Graph4
 from .serializers import Graph1Serializer, Graph2Serializer,Graph4Serializer,Graph3Serializer
+from.pagination import CustomPagination
 
 class Graph1ViewSet(viewsets.ModelViewSet):
     queryset = Graph1.objects.all()
@@ -12,6 +13,7 @@ class Graph1ViewSet(viewsets.ModelViewSet):
 class Graph2ViewSet(viewsets.ModelViewSet):
     queryset = Graph2.objects.all()
     serializer_class = Graph2Serializer
+    pagination_class = CustomPagination
 
 
 class Graph3ViewSet(viewsets.ModelViewSet):
