@@ -113,20 +113,21 @@ class SearchAPIView(APIView):
     def get(self, request):
         query = request.query_params.get('query', None)  
         if query:
-            points = Point.objects.filter(name__icontains=query)
+            
             news = News.objects.filter(title__icontains=query)
             tenders = Tender.objects.filter(name__icontains=query)
             project = Project.objects.filter(name__icontains=query)
-            point_serializer = PointSerializer(points, many=True)
+            document = Document.objects.filter(description__contains=query)
             news_serializer = NewsSerializer(news, many=True)
             tender_serializer = TenderSerializer(tenders, many=True)
             project_serializer = ProjectSerializer(project,many=True)
+            document_serializer = DocumentSerializer(document,many=True)
 
             return Response({
-                'points': point_serializer.data,
                 'news': news_serializer.data,
                 'tenders': tender_serializer.data,
-                'project':project_serializer.data
+                'project':project_serializer.data,
+                'document':document_serializer
             }, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Пожалуйста, введите запрос для поиска.'}, status=status.HTTP_400_BAD_REQUEST)
