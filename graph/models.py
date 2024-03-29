@@ -51,7 +51,8 @@ class Graph2(models.Model):
     ]
     type = models.CharField(max_length=200, choices=TYPE_CHOICES)
     month = models.CharField(max_length=200, choices=MONTH_CHOICES)
-    y = models.IntegerField()
+    x = models.IntegerField(null=True,blank=True)
+    y = models.IntegerField(null=True,blank=True)
 
 
 class Graph3(models.Model):

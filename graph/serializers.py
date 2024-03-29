@@ -9,7 +9,7 @@ class Graph1Serializer(serializers.ModelSerializer):
 class Graph2Serializer(serializers.ModelSerializer):
     class Meta:
         model = Graph2
-        fields = ['id', 'type', 'month', 'y']
+        fields = ['id', 'type', 'month', 'x','y']
 
 class Graph3Serializer(serializers.ModelSerializer):
     class Meta:

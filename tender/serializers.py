@@ -5,4 +5,4 @@ from .models import Tender
 class TenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tender
-        fields = ('id', 'name', 'created_at', 'deadline', 'description')
+        fields = ('id', 'name', 'created_at', 'deadline', 'description','status','results')

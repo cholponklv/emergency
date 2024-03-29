@@ -127,7 +127,7 @@ class SearchAPIView(APIView):
                 'news': news_serializer.data,
                 'tenders': tender_serializer.data,
                 'project':project_serializer.data,
-                'document':document_serializer
+                'document':document_serializer.data
             }, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Пожалуйста, введите запрос для поиска.'}, status=status.HTTP_400_BAD_REQUEST)
