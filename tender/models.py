@@ -14,7 +14,10 @@ class Tender(models.Model):
     deadline = models.DateField()
     description = CKEditor5Field('Description', config_name='extends')
     status = models.CharField(max_length=200, choices=TYPE_CHOICES)
-    results = CKEditor5Field('Results', config_name='extends',null=True,blank = True)
+
+class TenderResult(models.Model):
+    tender = models.OneToOneField('Tender', on_delete=models.CASCADE, related_name='result')
+    result_description = CKEditor5Field('Results', config_name='extends')
     
 
 

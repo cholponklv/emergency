@@ -8,4 +8,5 @@ router.register(r'tenders', TenderViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+     path('tenders/<int:pk>/results/create/', TenderViewSet.as_view({'post': 'create_result'}), name='create-tender-result'),
 ]
