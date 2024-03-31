@@ -5,9 +5,7 @@ from .models import Tender,TenderResult
 from .serializers import TenderSerializer,TenderResultSerializer
 from.pagination import CustomPagination
 from .filters import TenderFilter
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import generics
 
 class TenderViewSet(viewsets.ModelViewSet):
     queryset = Tender.objects.all()
@@ -17,11 +15,9 @@ class TenderViewSet(viewsets.ModelViewSet):
     filterset_class = TenderFilter
     search_fields = ['name', 'description']
 
-    @action(detail=True, methods=['post'])
-    def create_result(self, request, pk=None):
-        tender = self.get_object()
-        serializer = TenderResultSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(tender=tender)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class TenderResultListView(generics.ListAPIView):
+    serializer_class = TenderResultSerializer
+
+    def get_queryset(self):
+        tender_id = self.kwargs['id']
+        return TenderResult.objects.filter(tender_id=tender_id)
