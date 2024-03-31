@@ -6,6 +6,7 @@ from .models import News
 from .serializers import NewsSerializer
 from.pagination import CustomPagination
 from .filters import NewsFilter
+import re
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
@@ -14,3 +15,5 @@ class NewsViewSet(viewsets.ModelViewSet):
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = NewsFilter
     search_fields = ['title', 'created_at']
+
+    
