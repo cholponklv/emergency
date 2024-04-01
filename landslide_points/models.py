@@ -15,4 +15,5 @@ class Point(models.Model):
     temperature = models.IntegerField(null=True,blank=True)
     finished = models.IntegerField(null=True,blank=True)
     depth = models.IntegerField(null=True,blank=True)
-    
+    def __str__(self):
+            return self.name
