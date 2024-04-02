@@ -20,7 +20,5 @@ class Tender(models.Model):
 class TenderResult(models.Model):
     tender = models.OneToOneField('Tender', on_delete=models.CASCADE, related_name='result')
     result_description = CKEditor5Field('Results', config_name='extends')
-    def __str__(self):
-            return self.tender
 
 
