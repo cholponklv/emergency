@@ -23,7 +23,7 @@ class Graph1(models.Model):
         ('Plan', 'План'),
         ('Actual', 'Факт'),
     ]
-    
+    name = models.CharField(max_length=100)
     month = models.CharField(max_length=120, choices=MONTH_CHOICES)
     value = models.IntegerField()
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
