@@ -4,7 +4,7 @@ from .models import Graph1,Graph4,Graph3,Graph2
 class Graph1Serializer(serializers.ModelSerializer):
     class Meta:
         model = Graph1
-        fields = ['id', 'month', 'value', 'type']
+        fields = ['id', 'name','month', 'value', 'type']
 
 class Graph2Serializer(serializers.ModelSerializer):
     class Meta:
