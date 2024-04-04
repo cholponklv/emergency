@@ -10,7 +10,7 @@ class Tender(models.Model):
         ('finished', 'Закончен'),
     ]
     name = models.CharField(max_length=144)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField()
     deadline = models.DateField()
     description = CKEditor5Field('Description', config_name='extends')
     status = models.CharField(max_length=200, choices=TYPE_CHOICES)

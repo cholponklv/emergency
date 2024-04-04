@@ -80,7 +80,7 @@ class Graph3(models.Model):
 
 class Graph4(models.Model):
     name = models.CharField(max_length=100)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField()
     costs = models.IntegerField()
     def __str__(self):
             return self.name
