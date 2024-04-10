@@ -100,7 +100,6 @@ class AllPhotosView(generics.ListAPIView):
 class AllDocumentsView(generics.ListAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
-    pagination_class = CustomPagination
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = DocumentFilter
     search_fields = ['project', 'description']
