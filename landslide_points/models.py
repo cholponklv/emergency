@@ -10,7 +10,7 @@ class Point(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
     longitude = models.CharField(max_length=255)
     latitude = models.CharField(max_length=155)
-    location = models.CharField(max_length=100)  
+    location = models.CharField(max_length=100,null=True,blank=True)  
     speed = models.IntegerField(null=True,blank=True)
     temperature = models.IntegerField(null=True,blank=True)
     finished = models.IntegerField(null=True,blank=True)

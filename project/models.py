@@ -14,14 +14,10 @@ class Photo(models.Model):
     caption = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Photo for {self.project.name}"
 
 class Document(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='documents')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='documents',blank=True,null=True)
     file = models.FileField(upload_to='documents/',null=True,blank=True)
     description = models.CharField(max_length=255)
     created_at = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Document for {self.project.name}"
