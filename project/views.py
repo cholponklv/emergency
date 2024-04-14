@@ -23,7 +23,6 @@ from rest_framework.views import APIView
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    pagination_class = CustomPagination
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = ProjectFilter
     search_fields = ['name', 'description']
