@@ -4,7 +4,7 @@ from .models import Tender, TenderResult,DocumentTender,DocumentResultTender
 class TenderResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = TenderResult
-        fields = ('file','result_description_ru','result_description_kg','result_description_en',)
+        fields = ('result_description_ru','result_description_kg','result_description_en',)
 
 class TenderSerializer(serializers.ModelSerializer):
     result = TenderResultSerializer(required=False)
