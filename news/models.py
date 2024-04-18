@@ -4,7 +4,7 @@ from project.models import Project
 from django_ckeditor_5.fields import CKEditor5Field
 
 class News(models.Model):
-    title_ru = models.CharField(max_length=160,null=True,blank=True)
+    title_ru = models.CharField(max_length=160)
     title_kg = models.CharField(max_length=160,null=True,blank=True)
     title_en = models.CharField(max_length=160,null=True,blank=True)
     target_ru = CKEditor5Field('Ru Text', config_name='extends',null=True,blank=True)

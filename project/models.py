@@ -1,7 +1,7 @@
 from django.db import models
 
 class Project(models.Model):
-    name_ru = models.CharField(max_length=256,null=True,blank=True)
+    name_ru = models.CharField(max_length=256)
     name_kg = models.CharField(max_length=256,null=True,blank=True)
     name_en = models.CharField(max_length=256,null=True,blank=True)
     description_ru = models.TextField(null=True,blank=True)
@@ -10,7 +10,7 @@ class Project(models.Model):
     created_at = models.DateField()
 
     def __str__(self):
-        return self.name
+        return self.name_ru
 
 class Photo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='photos',null=True,blank=True)

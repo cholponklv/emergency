@@ -85,7 +85,7 @@ class Graph3(models.Model):
         return self.month
 
 class Graph4(models.Model):
-    name_ru = models.CharField(max_length=100,null=True,blank=True)
+    name_ru = models.CharField(max_length=100)
     name_kg = models.CharField(max_length=100,null=True,blank=True)
     name_en = models.CharField(max_length=100,null=True,blank=True)
     created_at = models.DateField()

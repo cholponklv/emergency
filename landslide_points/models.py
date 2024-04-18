@@ -6,7 +6,7 @@ class Point(models.Model):
         ('in_progress', 'in_progress'),
         ('is_assigned', 'is_assigned'),
     ]
-    name_ru = models.CharField(max_length=256,null=True,blank=True)
+    name_ru = models.CharField(max_length=256)
     name_kg = models.CharField(max_length=256,null=True,blank=True)
     name_en = models.CharField(max_length=256,null=True,blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)

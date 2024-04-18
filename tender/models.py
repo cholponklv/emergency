@@ -9,7 +9,7 @@ class Tender(models.Model):
         ('progress', 'В процессе'),
         ('finished', 'Закончен'),
     ]
-    name_ru = models.CharField(max_length=256,null=True,blank=True)
+    name_ru = models.CharField(max_length=256)
     name_kg = models.CharField(max_length=256,null=True,blank=True)
     name_en = models.CharField(max_length=256,null=True,blank=True)
     created_at = models.DateField()
@@ -18,12 +18,15 @@ class Tender(models.Model):
     description_kg = CKEditor5Field('kg Description', config_name='extends',null=True,blank=True)
     description_en = CKEditor5Field('en Description', config_name='extends',null=True,blank=True)
     status = models.CharField(max_length=200, choices=TYPE_CHOICES)
+    def __str__(self):
+            return self.name_ru
 
 class TenderResult(models.Model):
     tender = models.OneToOneField('Tender', on_delete=models.CASCADE, related_name='result')
     result_description_ru = CKEditor5Field('ru Results', config_name='extends',null=True,blank=True)
     result_description_kg = CKEditor5Field('kg Results', config_name='extends',null=True,blank=True)
     result_description_en = CKEditor5Field('en Results', config_name='extends',null=True,blank=True)
+    
 
 
 class DocumentTender(models.Model):
