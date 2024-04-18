@@ -6,7 +6,9 @@ class Point(models.Model):
         ('in_progress', 'in_progress'),
         ('is_assigned', 'is_assigned'),
     ]
-    name = models.CharField(max_length=256)
+    name_ru = models.CharField(max_length=256,null=True,blank=True)
+    name_kg = models.CharField(max_length=256,null=True,blank=True)
+    name_en = models.CharField(max_length=256,null=True,blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
     longitude = models.CharField(max_length=255)
     latitude = models.CharField(max_length=155)
@@ -16,4 +18,4 @@ class Point(models.Model):
     finished = models.IntegerField(null=True,blank=True)
     depth = models.IntegerField(null=True,blank=True)
     def __str__(self):
-            return self.name
+            return self.name_ru

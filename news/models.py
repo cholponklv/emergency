@@ -4,13 +4,17 @@ from project.models import Project
 from django_ckeditor_5.fields import CKEditor5Field
 
 class News(models.Model):
-    title = models.CharField(max_length=160)
-    target = CKEditor5Field('Text', config_name='extends')
+    title_ru = models.CharField(max_length=160,null=True,blank=True)
+    title_kg = models.CharField(max_length=160,null=True,blank=True)
+    title_en = models.CharField(max_length=160,null=True,blank=True)
+    target_ru = CKEditor5Field('Ru Text', config_name='extends',null=True,blank=True)
+    target_kg = CKEditor5Field('KG Text', config_name='extends',null=True,blank=True)
+    target_en = CKEditor5Field('EN Text', config_name='extends',null=True,blank=True)
     photo = models.ImageField(upload_to='NewsPhoto',null = True,blank = True)
     created_at = models.DateTimeField()
 
     def __str__(self):
-        return self.title
+        return self.title_ru
     
 
 

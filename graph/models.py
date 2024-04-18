@@ -23,7 +23,13 @@ class Graph1(models.Model):
         ('Plan', 'План'),
         ('Actual', 'Факт'),
     ]
-    name = models.CharField(max_length=100)
+    TYPE_CHOICES = [
+        ('Plan', 'План'),
+        ('Actual', 'Факт'),
+    ]
+    name_ru = models.CharField(max_length=100,null=True,blank=True)
+    name_kg = models.CharField(max_length=100,null=True,blank=True)
+    name_en = models.CharField(max_length=100,null=True,blank=True)
     month = models.CharField(max_length=120, choices=MONTH_CHOICES)
     value = models.IntegerField()
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
@@ -79,8 +85,10 @@ class Graph3(models.Model):
         return self.month
 
 class Graph4(models.Model):
-    name = models.CharField(max_length=100)
+    name_ru = models.CharField(max_length=100,null=True,blank=True)
+    name_kg = models.CharField(max_length=100,null=True,blank=True)
+    name_en = models.CharField(max_length=100,null=True,blank=True)
     created_at = models.DateField()
     costs = models.IntegerField()
     def __str__(self):
-            return self.name
+            return self.name_ru

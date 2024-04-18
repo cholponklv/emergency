@@ -4,12 +4,12 @@ from .models import Point
 @admin.register(Point)
 class PointAdmin(admin.ModelAdmin):
     
-    list_display = ('name', 'status', 'location','speed','temperature','finished','depth')
+    list_display = ('name_ru','name_kg','name_en', 'status', 'location','speed','temperature','finished','depth')
     list_filter = ('status', 'location')
-    search_fields = ('name',)
+    search_fields = ('name_ru','name_kg','name_en')
     fieldsets = (
         (None, {
-            'fields': ('name', 'status', 'location','speed','temperature','finished','depth')
+            'fields': ('name_ru','name_kg','name_en', 'status', 'location','speed','temperature','finished','depth')
         }),
         ('GPS координаты', {
             'fields': ('longitude', 'latitude'),

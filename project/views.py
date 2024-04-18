@@ -25,7 +25,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = ProjectFilter
-    search_fields = ['name', 'description']
+    search_fields = ['name_ru','name_kg','name_en','description_ru','description_kg','description_en']
 
 
 
@@ -101,7 +101,7 @@ class AllDocumentsView(generics.ListAPIView):
     serializer_class = DocumentSerializer
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = DocumentFilter
-    search_fields = ['project', 'description']
+    search_fields = ['project', 'description_ru','description_kg','description_en']
 
 
 

@@ -4,12 +4,12 @@ from .models import Project, Photo, Document
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['id','project', 'image', 'caption','created_at']
+        fields = ['id','project', 'image', 'caption_ru','caption_kg','caption_en','created_at']
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['id','project', 'file', 'description','created_at']
+        fields = ['id','project', 'file', 'description_ru','description_kg','description_en','created_at']
     def to_representation(self, instance):
         data = super().to_representation(instance)
         request = self.context.get('request')
@@ -23,4 +23,4 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ['id', 'name', 'description', 'photos', 'documents','created_at']
+        fields = ['id', 'name_ru','name_kg','name_en', 'description_ru','description_kg','description_en', 'photos', 'documents','created_at']

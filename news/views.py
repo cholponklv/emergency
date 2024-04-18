@@ -14,6 +14,6 @@ class NewsViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     filter_backends = (dj_filters.DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter)
     filterset_class = NewsFilter
-    search_fields = ['title', 'created_at']
+    search_fields = ['title_ru','title_kg','title_en', 'created_at']
 
     

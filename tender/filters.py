@@ -11,4 +11,6 @@ class TenderFilter(django_filters.FilterSet):
     class Meta:
         model = Tender
         fields = ['created_at', 'deadline']
-        ordering_fields = ['name', 'created_at', 'deadline']
+        ordering_fields = ['name_ru','name_kg','name_en', 'created_at', 'deadline']
+
+

@@ -7,4 +7,4 @@ class NewsFilter(django_filters.FilterSet):
     class Meta:
         model = News
         fields = ['created_at']
-        ordering_fields = ['title', 'created_at']
+        ordering_fields = ['title_ru','title_kg','title_en', 'created_at']

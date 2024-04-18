@@ -5,7 +5,7 @@ class ProjectFilter(django_filters.FilterSet):
     class Meta:
         model = Project
         fields = []
-        ordering_fields = ['name']
+        ordering_fields = ['name_ru','name_ru','name_ru']
 
 
 
@@ -15,4 +15,4 @@ class DocumentFilter(django_filters.FilterSet):
     class Meta:
         model = Document
         fields = ['project'] 
-        ordering_fields = ['name']
+        ordering_fields = ['name_ru','name_ru','name_ru']
