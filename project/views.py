@@ -107,14 +107,58 @@ class AllDocumentsView(generics.ListAPIView):
 
 
 
-class SearchAPIView(APIView):
+class SearchRUAPIView(APIView):
     def get(self, request):
         query = request.query_params.get('query', None)  
         if query:           
-            news = News.objects.filter(title__icontains=query)
-            tenders = Tender.objects.filter(name__icontains=query)
-            project = Project.objects.filter(name__icontains=query)
-            document = Document.objects.filter(description__contains=query)
+            news = News.objects.filter(title_ru__icontains=query)
+            tenders = Tender.objects.filter(name_ru__icontains=query)
+            project = Project.objects.filter(name_ru__icontains=query)
+            document = Document.objects.filter(description_ru__contains=query)
+            news_serializer = NewsSerializer(news, many=True, context={'request': request})
+            tender_serializer = TenderSerializer(tenders, many=True, context={'request': request})
+            project_serializer = ProjectSerializer(project, many=True, context={'request': request})
+            document_serializer = DocumentSerializer(document, many=True, context={'request': request})
+
+            return Response({
+                'news': news_serializer.data,
+                'tenders': tender_serializer.data,
+                'project': project_serializer.data,
+                'document': document_serializer.data
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Пожалуйста, введите запрос для поиска.'}, status=status.HTTP_400_BAD_REQUEST)
+
+class SearchKGAPIView(APIView):
+    def get(self, request):
+        query = request.query_params.get('query', None)  
+        if query:           
+            news = News.objects.filter(title_kg__icontains=query)
+            tenders = Tender.objects.filter(name_kg__icontains=query)
+            project = Project.objects.filter(name_kg__icontains=query)
+            document = Document.objects.filter(description_kg__contains=query)
+            news_serializer = NewsSerializer(news, many=True, context={'request': request})
+            tender_serializer = TenderSerializer(tenders, many=True, context={'request': request})
+            project_serializer = ProjectSerializer(project, many=True, context={'request': request})
+            document_serializer = DocumentSerializer(document, many=True, context={'request': request})
+
+            return Response({
+                'news': news_serializer.data,
+                'tenders': tender_serializer.data,
+                'project': project_serializer.data,
+                'document': document_serializer.data
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Пожалуйста, введите запрос для поиска.'}, status=status.HTTP_400_BAD_REQUEST)
+
+class SearchENAPIView(APIView):
+    def get(self, request):
+        query = request.query_params.get('query', None)  
+        if query:           
+            news = News.objects.filter(title_en__icontains=query)
+            tenders = Tender.objects.filter(name_en__icontains=query)
+            project = Project.objects.filter(name_en__icontains=query)
+            document = Document.objects.filter(description_en__contains=query)
             news_serializer = NewsSerializer(news, many=True, context={'request': request})
             tender_serializer = TenderSerializer(tenders, many=True, context={'request': request})
             project_serializer = ProjectSerializer(project, many=True, context={'request': request})
