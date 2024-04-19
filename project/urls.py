@@ -12,9 +12,9 @@ urlpatterns = [
     path('projects/<int:project_id>/documents/<int:pk>/', DocumentViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='document-detail'),
     path('photos/', AllPhotosView.as_view(), name='all-photos'),
     path('documents/', AllDocumentsView.as_view(), name='all-documents'),
-    path('api/search/ru', SearchRUAPIView.as_view(), name='search_api_ru'),
-    path('api/search/kg', SearchKGAPIView.as_view(), name='search_api_kg'),
-    path('api/search/en', SearchENAPIView.as_view(), name='search_api_en'),
+    path('api/search/ru/', SearchRUAPIView.as_view(), name='search_api_ru'),
+    path('api/search/kg/', SearchKGAPIView.as_view(), name='search_api_kg'),
+    path('api/search/en/', SearchENAPIView.as_view(), name='search_api_en'),
 ]
 
 urlpatterns += router.urls
